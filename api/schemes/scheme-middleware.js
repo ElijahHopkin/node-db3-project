@@ -57,7 +57,7 @@ const validateScheme = (req, res, next) => {
 */
 const validateStep = (req, res, next) => {
   const {instructions} = req.body
-  if((!instructions || instructions.trim() == '' || typeof instructions != 'string' )|| (parseInt(req.body.step_number) != 'number' || parseInt(req.body.step_number) < 1 )){
+  if((!instructions || instructions.trim() == '' || typeof instructions != 'string' )|| (Number.isNaN(parseInt(req.body.step_number)) || parseInt(req.body.step_number) < 1 )){
     next({ message: 'invalid step', status:400})
   }else{
     next();
